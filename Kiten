@@ -1,0 +1,206 @@
+<!doctype html>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-cyan.min.css">
+<!--<link rel="stkylesheet" href="style.css">-->
+
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js">
+
+</script>
+
+<style>
+    #main {
+        height: 100%;
+        width: 100%;
+    }
+
+    body {
+        height: 100%;
+        width: 100%;
+    }
+
+    #videoplayer {
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }
+
+    #livewind {
+        overflow: hidden;
+    }
+
+    #livewindframe {
+        -ms-zoom: 1.8;
+        -moz-transform: scale(1.8);
+        -moz-transform-origin: 0 0;
+        -o-transform: scale(1.8);
+        -o-transform-origin: 0 0;
+        -webkit-transform: scale(1.8);
+        -webkit-transform-origin: 0 0;
+        height: 6000px;
+    }
+
+    #wassertemperatur--iframe {
+        border: 0px none;
+        margin-left: -45px;
+        height: 859px;
+        margin-top: -695px;
+        width: 420px;
+    }
+
+    @media only screen and (max-width: 361px) {
+        #wassertemperatur--iframe {
+            border: 0px none;
+            margin-left: -40px;
+            height: 695px;
+            margin-top: -638px;
+            width: 420px;
+        }
+    }
+    @media only screen and (max-height: 361px) {
+        #wassertemperatur--iframe {
+            display: none;
+        }
+    }
+</style>
+
+<head>
+    <title>Kitewetter</title>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">-->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="shortcut icon" href="http://download.easyicon.net/ico/1208296/128/">
+
+    <!--<link rel="manifest" href='./manifest.json'>-->
+</head>
+
+<body>
+    <div id="main" class="mdl-grid mdl-grid--no-spacing">
+
+
+        <div id="videocontainer" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+            <iframe id="videoplayer" src="http://webtv.feratel.com/webtv/?design=v3&pg=121E2E32-862A-4791-8936-B41853615FB6&cam=5900" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+
+            <div id="windguru" class="mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet">
+                <script src="http://widget.windguru.cz/js/wg_widget.php" type="text/javascript"></script>
+                <script language="JavaScript" type="text/javascript">
+                    //<![CDATA[
+                    WgWidget({
+                        s: 545840, odh: 0, doh: 24, wj: 'knots', tj: 'c', waj: 'm', fhours: 21, lng: 'de',
+                        params: ['WINDSPD', 'GUST', 'SMER', 'TMPE', 'CDC', 'APCPs'],
+                        first_row: true,
+                        spotname: true,
+                        first_row_minfo: true,
+                        last_row: true,
+                        lat_lon: false,
+                        tz: false,
+                        sun: true,
+                        link_archive: false,
+                        link_new_window: false
+                    },
+                        'wg_target_div_545840_90686790'
+                    );
+                //]]>
+                </script>
+                <div id="wg_target_div_545840_90686790"></div>
+            </div>
+
+            <div id="wassertemperatur" class="mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet" style="overflow: hidden; max-width: 420px;">
+                <iframe id="wassertemperatur--iframe" scrolling="no" src="http://www.wetter.at/wetter/sport-freizeit/bade-wetter/oesterreich/burgenland/neusiedler-see">
+                </iframe>
+            </div>
+
+        </div>
+
+        <div>
+
+        </div>
+
+
+        <div id="livewind" class="mdl-cell mdl-cell--12-col">
+            <iframe id="livewindframe" scrolling="no" src="http://server0.beachhawk.net/wx/wx003/weatherstat_kn.html" frameborder="0"></iframe>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    // Wasserdaten: http://www.byc.at/img/cms/dynamic/temp_stats_data.php?start=201705230000&end=201705232359
+    // Wasserdiagramm: http://wasser.bgld.gv.at/hydrographie/seestationen/podersdorf.html
+
+    container = document.getElementById("videocontainer");
+    main = document.getElementById("main");
+    wassertemperatur = document.getElementById("wassertemperatur");
+    windguru = document.getElementById("windguru");
+    function resize() {
+
+        //Videoplayer, höhe setzen
+        console.log("resize");
+        width = container.clientWidth;
+        var height = width * (9 / 16);
+        if (width < 313) {
+            height += 8 + 15;
+        }
+        if (width >= 313 && width < 500) {
+            height += 8 + 15;
+        }
+        if (width >= 500 && width < 768) {
+            height += 8 + 15 + 50 + 57;
+        }
+        if (width >= 768) {
+            height += 8 + 15 + 57;
+        }
+        container.setAttribute("style", "height:" + height + "px");
+        container.style.height = height + "px";
+
+        //Windguru und Wassertemperatur können nicht kleiner als bestimmter Wert werden, dann überlappen sie
+        //darum muss man sie alleine in eine Reihe setzen
+        mainwidth = main.clientWidth;
+        if (mainwidth <= 587) {
+            wassertemperatur.classList.remove("mdl-cell--4-col-tablet");
+            wassertemperatur.classList.add("mdl-cell--8-col-tablet");
+
+            windguru.classList.remove("mdl-cell--4-col-tablet");
+            windguru.classList.add("mdl-cell--8-col-tablet");
+        }
+        else {
+            wassertemperatur.classList.remove("mdl-cell--8-col-tablet");
+            wassertemperatur.classList.add("mdl-cell--4-col-tablet");
+
+            windguru.classList.remove("mdl-cell--8-col-tablet");
+            windguru.classList.add("mdl-cell--4-col-tablet");
+        }
+    }
+    window.addEventListener("resize", resize, true);
+    resize();
+
+</script>
+
+<!--<div id="videocontainer" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--stretch">
+            <video id="videoplayer" controls autoplay loop muted>
+                <source src="http://streamsrv15.feratel.co.at/streams/1/05900_5922d265-c847Vid.mp4?dcsdesign=WTP_bergfex.at" type="video/mp4">
+            </video>
+        </div>-->
+
+
+<!--<div id="windfinder" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+            <script type="text/javascript" src="https://de.windfinder.com/widget/forecast/js/podersdorf_neusiedler_see?unit_wave=m&unit_rain=mm&unit_temperature=c&unit_wind=kts&columns=3&days=1&show_day=0"></script>
+            <noscript>
+                <a rel='nofollow' href='https://www.windfinder.com/forecast/podersdorf_neusiedler_see?utm_source=forecast&utm_medium=web&utm_campaign=homepageweather&utm_content=noscript-forecast'>Wind forecast for Podersdorf/Neusiedler See</a> provided by
+                <a rel='nofollow' href='https://www.windfinder.com?utm_source=forecast&utm_medium=web&utm_campaign=homepageweather&utm_content=noscript-logo'>windfinder.com</a>
+            </noscript>
+        </div>-->
+
+
+<!--<div class="mdl-cell mdl-cell--12-col mdl-cell--stretch">
+            <img class="bild" src="http://wasser.bgld.gv.at/fileadmin/_processed_/a/a/csm_s_podersdorf_5_dia5_2eae6f08f7.png"> http://wasser.bgld.gv.at/fileadmin/_processed_/a/a/csm_s_podersdorf_5_dia5_266791a87b.png http://wasser.bgld.gv.at/fileadmin/_processed_/a/a/csm_s_podersdorf_5_dia5_aeae6f08f7.png
+        </div>-->
+
+
+<!--        
+        <div id="videocontainer" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+            <iframe id="videoplayer" src="http://www.byc.at/img/cms/dynamic/temp_stats_data.php?start=201705230000&end=201705232359" frameborder="0"></iframe>
+        </div>-->
