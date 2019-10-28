@@ -47,17 +47,20 @@
         margin-top: -110px;
         width: 480px;
     }
-    #wassertemperatur{
-        background:#244473;
+   
+
+    #wassertemperatur {
+        background: #244473;
     }
 </style>
 
 <head>
     <title>Kitewetter</title>
     <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">-->
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi">
+    <meta name="viewport"
+        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi">
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="shortcut icon" href="http://download.easyicon.net/ico/1208296/128/">
+    <link rel="shortcut icon" href="https://download.easyicon.net/ico/1208296/128/">
 
     <!--<link rel="manifest" href='./manifest.json'>-->
 </head>
@@ -67,14 +70,15 @@
 
 
         <div id="videocontainer" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-            <iframe id="videoplayer" src="http://webtv.feratel.com/webtv/?design=v3&pg=121E2E32-862A-4791-8936-B41853615FB6&cam=5900" frameborder="0" allowfullscreen
-            sandbox="allow-scripts"></iframe>
+            <iframe id="videoplayer"
+                src="https://webtv.feratel.com/webtv/?design=v3&pg=121E2E32-862A-4791-8936-B41853615FB6&cam=5900"
+                frameborder="0" allowfullscreen sandbox="allow-scripts"></iframe>
         </div>
 
         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
 
             <div id="windguru" class="mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet">
-                <script src="http://widget.windguru.cz/js/wg_widget.php" type="text/javascript"></script>
+                <script src="https://widget.windguru.cz/js/wg_widget.php" type="text/javascript"></script>
                 <script language="JavaScript" type="text/javascript">
                     //<![CDATA[
                     WgWidget({
@@ -97,9 +101,13 @@
                 <div id="wg_target_div_545840_90686790"></div>
             </div>
 
-            <div id="wassertemperatur" class="mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-cell--top" style="overflow: hidden; max-width: 420px;" sandbox>
-                <iframe id="wassertemperatur--iframe" scrolling="no" src="http://app.wetter.at/wetter/sport-freizeit/bade-wetter/oesterreich/burgenland/neusiedler-see">
-                </iframe>
+            <div id="wassertemperatur" class="mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-cell--top"
+                style="overflow: hidden; max-width: 420px;" sandbox>
+                <iframe id="wassertemperatur--iframe" scrolling="no"
+                    src="http://app.wetter.at/wetter/sport-freizeit/bade-wetter/oesterreich/burgenland/neusiedler-see"></iframe>
+                <!-- <iframe id="wassertemperatur--iframe2" scrolling="no"
+                    src="https://www.wetter.at/wetter/sport-freizeit/bade-wetter/oesterreich/burgenland/neusiedler-see"></iframe> -->
+
             </div>
 
         </div>
@@ -111,7 +119,8 @@
 
         <div id="livewind" class="mdl-cell mdl-cell--12-col">
             <!-- <iframe id="livewindframe" scrolling="no" src="http://server0.beachhawk.net/wx/wx003/weatherstat_kn.html" frameborder="0"></iframe> -->
-                 <iframe id="livewindframe" scrolling="no" src="https://www.kiteriders.at/wind/weatherstat_kn.html" frameborder="0"></iframe>
+            <iframe id="livewindframe" scrolling="no" src="https://www.kiteriders.at/wind/weatherstat_kn.html"
+                frameborder="0"></iframe>
         </div>
     </div>
 
