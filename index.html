@@ -30,13 +30,13 @@
     }
 
     #livewindframe {
-        -ms-zoom: 1.8;
+        /* -ms-zoom: 1.8;
         -moz-transform: scale(1.8);
         -moz-transform-origin: 0 0;
         -o-transform: scale(1.8);
         -o-transform-origin: 0 0;
         -webkit-transform: scale(1.8);
-        -webkit-transform-origin: 0 0;
+        -webkit-transform-origin: 0 0; */
         height: 6000px;
     }
 
@@ -47,7 +47,7 @@
         margin-top: -110px;
         width: 480px;
     }
-   
+
 
     #wassertemperatur {
         background: #244473;
@@ -60,7 +60,7 @@
     <meta name="viewport"
         content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi">
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="shortcut icon" href="https://download.easyicon.net/ico/1208296/128/">
+    <!-- <link rel="shortcut icon" href="https://download.easyicon.net/ico/1208296/128/"> -->
 
     <!--<link rel="manifest" href='./manifest.json'>-->
 </head>
@@ -102,7 +102,7 @@
             </div>
 
             <div id="wassertemperatur" class="mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-cell--top"
-                style="overflow: hidden; max-width: 420px;" sandbox>
+                style="overflow: hidden; max-width: 420px;" sandbox="">
                 <iframe id="wassertemperatur--iframe" scrolling="no"
                     src="http://app.wetter.at/wetter/sport-freizeit/bade-wetter/oesterreich/burgenland/neusiedler-see"></iframe>
                 <!-- <iframe id="wassertemperatur--iframe2" scrolling="no"
@@ -119,8 +119,11 @@
 
         <div id="livewind" class="mdl-cell mdl-cell--12-col">
             <!-- <iframe id="livewindframe" scrolling="no" src="http://server0.beachhawk.net/wx/wx003/weatherstat_kn.html" frameborder="0"></iframe> -->
-            <iframe id="livewindframe" scrolling="no" src="https://www.kiteriders.at/wind/weatherstat_kn.html"
+            <!-- <iframe id="livewindframe" scrolling="no" src="https://www.kiteriders.at/wind/weatherstat_kn.html"
+                frameborder="0"></iframe> -->
+            <iframe id="livewindframe" scrolling="no" src="https://www.kiteriders.at/wind/weatherstat.html"
                 frameborder="0"></iframe>
+            
         </div>
     </div>
 
